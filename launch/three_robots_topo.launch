@@ -1,0 +1,34 @@
+<launch>
+
+  <arg name="model" default="burger"/>
+  <node name="rviz1" pkg="rviz" type="rviz" args="-d $(find ros_topoexplore)/rviz/topoexplore.rviz" />
+  <node name="rviz2" pkg="rviz" type="rviz" args="-d $(find ros_topoexplore)/rviz/topoexplore_two.rviz" />
+  <node name="rviz3" pkg="rviz" type="rviz" args="-d $(find ros_topoexplore)/rviz/topoexplore_three.rviz" />
+
+
+  <node name="map_building1" pkg="ros_topoexplore" type="map.py" output="screen">
+    <param name="network" value="retrievalSfM120k-vgg16-gem" />
+    <param name="platform" value="cuda" />
+    <param name="robot_name" value="robot1"/>
+    <param name="robot_num" value="3"/>
+  </node>
+
+  <node name="map_building2" pkg="ros_topoexplore" type="map.py" output="screen">
+    <param name="network" value="retrievalSfM120k-vgg16-gem" />
+    <param name="platform" value="cuda:1" />
+    <param name="robot_name" value="robot2"/>
+    <param name="robot_num" value="3"/>
+  </node>
+
+  <node name="map_building3" pkg="ros_topoexplore" type="map.py" output="screen">
+    <param name="network" value="retrievalSfM120k-vgg16-gem" />
+    <param name="platform" value="cuda:1" />
+    <param name="robot_name" value="robot3"/>
+    <param name="robot_num" value="3"/>
+  </node>
+
+  <node name="experiment" pkg="ros_topoexplore" type="experiment.py" output="screen">
+    <param name="robot_num" value="3"/>
+  </node>
+
+</launch>

@@ -1,0 +1,3 @@
+string robot_name
+uint8 vertexID
+uint8 directionID

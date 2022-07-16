@@ -1,0 +1,47 @@
+<launch>
+
+  <arg name="model" default="burger"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ros_topoexplore)/rviz/topoexplore.rviz" />
+
+  <!-- launch gazebo
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find ros_topoexplore)/data/worlds/small.world"/>
+    <arg name="debug" value="false"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="gui" value="true"/>
+  </include>
+  -->
+
+  <!-- <group ns="robot1">
+      <include file="$(find ros_topoexplore)/launch/includes/robot.launch.xml">
+          <arg name="robot_name" value="robot1"/>
+          <arg name="model" value="$(arg model)"/>
+          <arg name="init_pose" value="-x 6.5 -y 5.3 -z 0.0 -Y 1.57"/>
+      </include>
+  </group> -->
+
+  <!-- <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="log">
+   <remap from="/scan" to="/robot1/scan"/>
+   <param name="map_update_interval" value="0.8" />
+   <param name="linearUpdate" value="0.1" />
+   <param name="angularUpdate" value="0.1" />
+   <param name="temporalUpdate" value="1" />
+  </node> -->
+
+  <node name="map_building" pkg="ros_topoexplore" type="map.py" output="screen">
+    <param name="network" value="retrievalSfM120k-vgg16-gem" />
+    <param name="platform" value="cuda" />
+    <param name="robot_name" value="robot1"/>
+    <param name="robot_num" value="1"/>
+  </node>
+
+  <node name="experiment" pkg="ros_topoexplore" type="experiment.py" output="screen">
+    <param name="robot_num" value="1"/>
+  </node>
+
+ <!-- <include file="$(find ros_topoexplore)/launch/includes/move_base.launch">
+ </include> -->
+
+</launch>
