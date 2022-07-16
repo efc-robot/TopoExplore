@@ -3,7 +3,7 @@
 The released Version of MR-TopoMap, the supporting open-sourced software package of the paper "MR-TopoMap: Multi-Robot Exploration Based on Topological Map in Communication Restricted
 Environment" submitted to RA-L and IROS 2022.
 
-Our video is released at Bilibili.
+Our video is released at [Bilibili](https://www.bilibili.com/video/BV14a411H7P1).
 
 Features:
 - A multi-robot exploration framework based on topological map
